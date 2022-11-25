@@ -30,16 +30,17 @@
 }
 
 .nome_usuario {
-    margin: 0 0 10px;
+    margin: 0 0 5px;
     font-size: 1.8rem;
     display: inline-block;
 }
 
 .metadado_usuario {
     color: rgb(129, 133, 135);
-    margin: 0 0 5px;
+    margin: 0 0 15px;
 }
 
 .dado_usuario {
     font-size: 1.2rem;
+    margin: .4rem 0;
 }

@@ -1,5 +1,6 @@
-// Fazer a versão mobile
-// Criar os sistemas de filtro
+// TODO: Fazer a versão mobile
+// TODO: Criar os sistemas de filtro, busca e ordenamento
+// TODO: Verificar o problema de retorno com apenas 30
 
 import React, { useState } from "react";
 import Usuario from "./components/Usuario";
@@ -45,8 +46,9 @@ function App() {
 
   return (
     <main className="main">
-      <header>
-        <h1 className="gikihub">GikiHub</h1>
+      <header className="header">
+        <img src={require('./assets/GikiHub.png')} alt="Logo do GikiHub" className="logo"/>
+        <h1 className="gikihub">Giki Hub</h1>
       </header>
       <div className="buscador">
         <input
