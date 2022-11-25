@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/GikiHub/static/css/main.b099bcd1.css",
+    "main.js": "/GikiHub/static/js/main.14c08dfe.js",
+    "static/media/GikiHub.png": "/GikiHub/static/media/GikiHub.ab9ce8bfb4c7247eeb9f.png",
+    "index.html": "/GikiHub/index.html",
+    "main.b099bcd1.css.map": "/GikiHub/static/css/main.b099bcd1.css.map",
+    "main.14c08dfe.js.map": "/GikiHub/static/js/main.14c08dfe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b099bcd1.css",
+    "static/js/main.14c08dfe.js"
+  ]
+}
