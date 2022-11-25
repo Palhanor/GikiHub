@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import Usuario from './components/Usuario';
+import Projeto from './components/Projeto';
 import './App.css';
+
+const github = require('./assets/github.svg')
+
+// Usuario - https://api.github.com/users/Palhanor
+// Repositorios - https://api.github.com/users/Palhanor/repos
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <main className='main'>
+      <header>
+        <h1>GikiHub</h1>
+        <img src={github} alt="Logo do Github" />
       </header>
-    </div>
+      <input type="text" placeholder="Buscar por usuário" />
+      <Usuario />
+      <section className="projeto">
+        <h2>Repositorios: 17</h2>
+        <Projeto /> 
+        <Projeto />
+      </section>
+    </main>
   );
 }
 

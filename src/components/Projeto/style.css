@@ -1,0 +1,55 @@
+.card_projeto {
+    background-color: #212329;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: .2s;
+}
+
+.card_projeto:hover {
+    transform: scale(1.005);
+    box-shadow: 4px 4px 12px #212329;
+}
+
+.titulo_projeto {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+}
+
+.data_projeto {
+    color: rgb(129, 133, 135);
+    font-size: .9rem;
+    margin: 0 0 5px;
+}
+
+.dados_projeto {
+    display: flex;
+}
+
+.dado_projeto {
+    margin-right: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.acoes_projeto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.remover_repo {
+    border: none;
+    background-color: #bd18184d;
+    color: rgb(226, 55, 55);
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}

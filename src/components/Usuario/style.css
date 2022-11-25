@@ -1,0 +1,29 @@
+.usuario {
+    width: 100%;
+    padding: 1rem 5%;
+    box-sizing: border-box;
+}
+
+.card_usuario {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #e3e7e9;
+    padding: 1.5rem;
+    border-radius: 20px;
+}
+
+.imagem_usuario {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 15px;
+    margin-right: 2rem;
+}
+
+.nome_usuario {
+    margin: 0 0 10px;
+    font-size: 1.8rem;
+}
+
+.id_usuario {
+    color: rgb(129, 133, 135);
+}
