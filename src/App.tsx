@@ -1,27 +1,80 @@
-import React from 'react';
-import Usuario from './components/Usuario';
-import Projeto from './components/Projeto';
-import './App.css';
+// Fazer a versão mobile
+// Criar os sistemas de filtro
 
-const github = require('./assets/github.svg')
-
-// Usuario - https://api.github.com/users/Palhanor
-// Repositorios - https://api.github.com/users/Palhanor/repos
+import React, { useState } from "react";
+import Usuario from "./components/Usuario";
+import Projeto from "./components/Projeto";
+import "./App.css";
+import api from "./service/api";
+import { AiOutlineSearch } from "react-icons/ai";
 
 function App() {
+  const [busca, setBusca] = useState("");
+  const [usuario, setUsuario] = useState({});
+  const [projetos, setProjetos] = useState<any[]>([]);
+
+  const buscar = async () => {
+    try {
+      const respostaUsuario = await api.get(`${busca}`);
+      setUsuario(respostaUsuario.data);
+      try {
+        const respostaProjetos = await api.get(`${busca}/repos`);
+        setProjetos(respostaProjetos.data);
+      } catch (e) {
+        setProjetos([]);
+      }
+    } catch (e) {
+      setUsuario({});
+      setProjetos([]);
+    }
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBusca(e.target.value);
+  };
+
+  const buscaInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === "Enter") buscar();
+  };
+
+  const remover = (id: number) => {
+    setProjetos((projetos) => {
+      return projetos.filter((projeto) => projeto.id !== id);
+    });
+  };
+
   return (
-    <main className='main'>
+    <main className="main">
       <header>
-        <h1>GikiHub</h1>
-        <img src={github} alt="Logo do Github" />
+        <h1 className="gikihub">GikiHub</h1>
       </header>
-      <input type="text" placeholder="Buscar por usuário" />
-      <Usuario />
-      <section className="projeto">
-        <h2>Repositorios: 17</h2>
-        <Projeto /> 
-        <Projeto />
-      </section>
+      <div className="buscador">
+        <input
+          type="text"
+          placeholder="Buscar por usuário"
+          value={busca}
+          onChange={handleInput}
+          className="input"
+          onKeyDown={buscaInput}
+        />
+        <button onClick={buscar} className="buscar">
+          <AiOutlineSearch color="#FFFFFF" size={25} />
+        </button>
+      </div>
+      <Usuario usuario={usuario} />
+      {projetos.length > 0 && (
+        <section className="projeto">
+          <h2 className="titulo_projeto">Repositorios: {projetos.length}</h2>
+          {/* <div>
+            <div>ordenador - nome, data criacao, data atualizacao, acompanhando, forks, estrelas (pra cima ou pra baixo)</div>
+            <div>buscador - nome, descricao</div>
+            <div>filtro - linguagem</div>
+          </div> */}
+          {projetos.map((projeto) => (
+            <Projeto key={projeto.id} projeto={projeto} remover={remover} />
+          ))}
+        </section>
+      )}
     </main>
   );
 }

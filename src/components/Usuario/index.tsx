@@ -1,24 +1,34 @@
 import "./style.css";
 
-export default function Usuario() {
+// Âncora para o perfil no GitHub
+
+export default function Usuario({ usuario }: { usuario: any }) {
   return (
     <section className="usuario">
-      <h2 className="titulo">Usuário</h2>
-      <div className="card_usuario">
-        <img
-          src="https://avatars.githubusercontent.com/u/42905311?v=4"
-          alt="Imagem do usuario"
-          className="imagem_usuario"
-        />
-        <div>
-          <h3 className="nome_usuario">Lucas Palhano</h3>
-          <span className="id_usuario">#42905311</span>
-          <p>Seguidores: 19</p>
-          <p>Seguindo: 19</p>
-          <p>Repositorios: 16</p>
-          <p>Criado em 02/09/2018</p>
+      {usuario.id ? (
+        <h2 className="titulo_usuario">Usuário</h2>
+      ) : (
+        <h2 className="titulo_usuario-central">Nenhum usuário encontrado...</h2>
+      )}
+      {usuario.id && (
+        <div className="card_usuario">
+          <img
+            src={usuario.avatar_url}
+            alt="Imagem do usuario"
+            className="imagem_usuario"
+          />
+          <div>
+            <h3 className="nome_usuario">{usuario.name}&nbsp;</h3>
+            <span className="metadado_usuario">#{usuario.id}</span>
+            <p className="metadado_usuario">
+              Conta criada em {usuario.created_at.slice(0, 10)}
+            </p>
+            <p className="dado_usuario">{usuario.public_repos} Repositórios</p>
+            <p className="dado_usuario">{usuario.following} Seguindo</p>
+            <p className="dado_usuario">{usuario.followers} Seguidores</p>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
