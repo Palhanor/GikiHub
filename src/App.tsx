@@ -1,15 +1,19 @@
 // TODO: Fazer a versão mobile
+// TODO: Ver problema de watches e stars
 // TODO: Criar os sistemas de filtro, busca e ordenamento
 // TODO: Verificar o problema de retorno com apenas 30
+  // Usar o page e reload quando chega no fundo (aplicar o valor no numero de repositorios) (page++)
+  // https://stackoverflow.com/questions/45585542/detecting-when-user-scrolls-to-bottom-of-div-with-react-js
 
 import React, { useState } from "react";
 import Usuario from "./components/Usuario";
 import Projeto from "./components/Projeto";
-import "./App.css";
-import api from "./service/api";
 import { AiOutlineSearch } from "react-icons/ai";
+import api from "./service/api";
+import "./App.css";
 
 function App() {
+  const [pagina, setPagina] = useState(1)
   const [busca, setBusca] = useState("");
   const [usuario, setUsuario] = useState({});
   const [projetos, setProjetos] = useState<any[]>([]);
@@ -19,8 +23,11 @@ function App() {
       const respostaUsuario = await api.get(`${busca}`);
       setUsuario(respostaUsuario.data);
       try {
-        const respostaProjetos = await api.get(`${busca}/repos`);
+        const respostaProjetos = await api.get(
+          `${busca}/repos?page=${pagina}&per_page=30`
+        );
         setProjetos(respostaProjetos.data);
+        setPagina(pagina => pagina++)
       } catch (e) {
         setProjetos([]);
       }
@@ -47,7 +54,11 @@ function App() {
   return (
     <main className="main">
       <header className="header">
-        <img src={require('./assets/GikiHub.png')} alt="Logo do GikiHub" className="logo"/>
+        <img
+          src={require("./assets/GikiHub.png")}
+          alt="Logo do GikiHub"
+          className="logo"
+        />
         <h1 className="gikihub">Giki Hub</h1>
       </header>
       <div className="buscador">
@@ -66,7 +77,7 @@ function App() {
       <Usuario usuario={usuario} />
       {projetos.length > 0 && (
         <section className="projeto">
-          <h2 className="titulo_projeto">Repositorios: {projetos.length}</h2>
+          <h2 className="titulo_projeto">Repositórios</h2>
           {/* <div>
             <div>ordenador - nome, data criacao, data atualizacao, acompanhando, forks, estrelas (pra cima ou pra baixo)</div>
             <div>buscador - nome, descricao</div>

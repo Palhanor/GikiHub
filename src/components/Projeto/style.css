@@ -1,5 +1,5 @@
 .card_projeto {
-    background-color: #212329;
+    background-color: #20232a;
     box-sizing: border-box;
     width: 100%;
     border-radius: 20px;
@@ -12,7 +12,8 @@
 
 .card_projeto:hover {
     transform: scale(1.005);
-    box-shadow: 4px 4px 12px #212329;
+    box-shadow: 4px 4px 12px #20232a;
+    ;
 }
 
 .nome_projeto {
