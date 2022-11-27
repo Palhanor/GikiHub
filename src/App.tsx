@@ -1,11 +1,9 @@
 // TODO: Fazer a versão mobile
 // TODO: Ver problema de watches e stars
-// TODO: Criar os sistemas de filtro, busca e ordenamento
-// TODO: Verificar o problema de retorno com apenas 30
-  // Usar o page e reload quando chega no fundo (aplicar o valor no numero de repositorios) (page++)
-  // https://stackoverflow.com/questions/45585542/detecting-when-user-scrolls-to-bottom-of-div-with-react-js
+// TODO: Criar os sistemas de filtro (Linguagem), busca (Nome, Descrição) e ordenamento (Nome, Data de Criação, Data de Atualização, Acompanhando, Forks, Estrelas - pra cima ou pra baixo)
+// TODO: Tratar erro de limite de uso atingido
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Usuario from "./components/Usuario";
 import Projeto from "./components/Projeto";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -13,28 +11,68 @@ import api from "./service/api";
 import "./App.css";
 
 function App() {
-  const [pagina, setPagina] = useState(1)
+  const [pagina, setPagina] = useState(1);
   const [busca, setBusca] = useState("");
-  const [usuario, setUsuario] = useState({});
+  const [usuario, setUsuario] = useState<any>({});
   const [projetos, setProjetos] = useState<any[]>([]);
 
+  const handleScroll = () => {
+    const chegouNoFundo =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight;
+    const numeroProjetos = projetos.length;
+    const totalProjetos = usuario.public_repos;
+    const existeUsuario = usuario.id;
+    if (
+      existeUsuario &&
+      chegouNoFundo &&
+      numeroProjetos > 0 &&
+      numeroProjetos < totalProjetos
+    )
+      pegarProjetos();
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
   const buscar = async () => {
-    try {
-      const respostaUsuario = await api.get(`${busca}`);
-      setUsuario(respostaUsuario.data);
+    if (busca !== "") {
+      setPagina(() => 1);
       try {
-        const respostaProjetos = await api.get(
-          `${busca}/repos?page=${pagina}&per_page=30`
-        );
-        setProjetos(respostaProjetos.data);
-        setPagina(pagina => pagina++)
-      } catch (e) {
-        setProjetos([]);
+        pegarUsuario();
+        try {
+          pegarProjetos(true);
+        } catch (e) {
+          setProjetos(() => []);
+        }
+      } catch (e: any) {
+        // console.log(e.response.status)
+        setUsuario(() => {});
+        setProjetos(() => []);
       }
-    } catch (e) {
-      setUsuario({});
-      setProjetos([]);
     }
+  };
+
+  const pegarUsuario = async () => {
+    const respostaUsuario = await api.get(`${busca}`);
+    setUsuario(respostaUsuario.data);
+    setProjetos(() => []);
+    setPagina(() => 1);
+  };
+
+  const pegarProjetos = async (novoUsuario?: boolean) => {
+    // console.log("pegando projetos na página " + pagina);
+    const respostaProjetos = await api.get(
+      `${busca}/repos?page=${novoUsuario ? 1 : pagina}&per_page=30`
+    );
+    setProjetos((projetos) => [...projetos, ...respostaProjetos.data]);
+    setPagina((pagina) => pagina + 1);
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +80,11 @@ function App() {
   };
 
   const buscaInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.code === "Enter") buscar();
+    if (e.code === "Enter" && busca !== "") buscar();
+  };
+
+  const buscaBotao = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (busca !== "") buscar();
   };
 
   const remover = (id: number) => {
@@ -70,7 +112,7 @@ function App() {
           className="input"
           onKeyDown={buscaInput}
         />
-        <button onClick={buscar} className="buscar">
+        <button onClick={buscaBotao} className="buscar">
           <AiOutlineSearch color="#FFFFFF" size={25} />
         </button>
       </div>
@@ -78,11 +120,11 @@ function App() {
       {projetos.length > 0 && (
         <section className="projeto">
           <h2 className="titulo_projeto">Repositórios</h2>
-          {/* <div>
-            <div>ordenador - nome, data criacao, data atualizacao, acompanhando, forks, estrelas (pra cima ou pra baixo)</div>
-            <div>buscador - nome, descricao</div>
-            <div>filtro - linguagem</div>
-          </div> */}
+          <div className="filtros">
+            <p>Input de Busca</p>
+            <p>Filtro</p>
+            <p>Ordenador</p>
+          </div>
           {projetos.map((projeto) => (
             <Projeto key={projeto.id} projeto={projeto} remover={remover} />
           ))}

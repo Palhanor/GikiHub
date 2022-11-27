@@ -17,7 +17,7 @@
 .card_usuario {
     display: flex;
     align-items: flex-start;
-    border: 1px solid #e3e7e9;
+    border: 1px solid #afb8bc;
     padding: 1.5rem;
     border-radius: 20px;
 }
