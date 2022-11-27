@@ -16,6 +16,10 @@
     ;
 }
 
+.conteudo_projeto {
+    max-width: 80%;
+}
+
 .nome_projeto {
     margin: 0 0 10px;
     font-size: 1.4rem;

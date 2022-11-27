@@ -1,7 +1,8 @@
-// TODO: Fazer a versão mobile
-// TODO: Ver problema de watches e stars
-// TODO: Criar os sistemas de filtro (Linguagem), busca (Nome, Descrição) e ordenamento (Nome, Data de Criação, Data de Atualização, Acompanhando, Forks, Estrelas - pra cima ou pra baixo)
 // TODO: Tratar erro de limite de uso atingido
+// TODO: Criar os sistemas visualização avançada
+// => filtro (Linguagem)
+// => busca (Nome, Descrição)
+// => ordenamento (Nome, Data de Criação, Data de Atualização, Acompanhando, Forks, Estrelas - pra cima ou pra baixo)
 
 import React, { useEffect, useState } from "react";
 import Usuario from "./components/Usuario";
@@ -120,11 +121,11 @@ function App() {
       {projetos.length > 0 && (
         <section className="projeto">
           <h2 className="titulo_projeto">Repositórios</h2>
-          <div className="filtros">
+          {/* <div className="filtros">
             <p>Input de Busca</p>
             <p>Filtro</p>
             <p>Ordenador</p>
-          </div>
+          </div> */}
           {projetos.map((projeto) => (
             <Projeto key={projeto.id} projeto={projeto} remover={remover} />
           ))}

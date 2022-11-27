@@ -10,7 +10,7 @@ import tratarNumero from "../../utils/tratarNumero";
 export default function Projeto({projeto, remover}: {projeto: any, remover: (id: number) => void}) {
   return (
     <div className="card_projeto">
-      <div>
+      <div className="conteudo_projeto">
         <div>
           <h3 className="nome_projeto">{(projeto.name).replaceAll("-", " ").replaceAll("_", " ")}&nbsp;</h3> 
           <span className="metadado_projeto"> #{projeto.id}</span>
@@ -22,9 +22,8 @@ export default function Projeto({projeto, remover}: {projeto: any, remover: (id:
           {projeto.language && <p className="linguagem_projeto">{projeto.language}</p>}
         </div>
         <div className="dados_projeto">
-          <p className="dado_projeto"><AiOutlineEye /> {tratarNumero(projeto.watchers_count)}</p>
-          <p className="dado_projeto"><TbGitFork /> {tratarNumero(projeto.forks_count)}</p>
           <p className="dado_projeto"><AiFillStar /> {tratarNumero(projeto.stargazers_count)}</p>
+          <p className="dado_projeto"><TbGitFork /> {tratarNumero(projeto.forks_count)}</p>
         </div>
       </div>
       <div className="acoes_projeto">
