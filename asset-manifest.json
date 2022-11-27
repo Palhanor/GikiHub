@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/GikiHub/static/css/main.b099bcd1.css",
-    "main.js": "/GikiHub/static/js/main.14c08dfe.js",
+    "main.css": "/GikiHub/static/css/main.0d69a78a.css",
+    "main.js": "/GikiHub/static/js/main.225e5171.js",
     "static/media/GikiHub.png": "/GikiHub/static/media/GikiHub.ab9ce8bfb4c7247eeb9f.png",
     "index.html": "/GikiHub/index.html",
-    "main.b099bcd1.css.map": "/GikiHub/static/css/main.b099bcd1.css.map",
-    "main.14c08dfe.js.map": "/GikiHub/static/js/main.14c08dfe.js.map"
+    "main.0d69a78a.css.map": "/GikiHub/static/css/main.0d69a78a.css.map",
+    "main.225e5171.js.map": "/GikiHub/static/js/main.225e5171.js.map"
   },
   "entrypoints": [
-    "static/css/main.b099bcd1.css",
-    "static/js/main.14c08dfe.js"
+    "static/css/main.0d69a78a.css",
+    "static/js/main.225e5171.js"
   ]
 }
