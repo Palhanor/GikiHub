@@ -1,46 +1,15 @@
-# Getting Started with Create React App
+![Logo do GikiHub](./public/assets/favicon.png)
+# Giki Hub
+O nome do projeto é uma brincadeira com os termos Wiki e GitHub. No geral, achei esse projeto muito legal pois não conhecia a API do GitHub, e nunca tinha trabalhado de verdade com o Axios, então foi uma boa oportunidade para aprender algo novo. Minha ideia aqui foi então dar um passo adiante do que foi mostrado na aula, e por isso o sistema funciona da seguinte forma:
+Você insere o username desejado e realiza a busca através do botão de busca (ou da tecla Enter), e então são retornados dados do perfil do usuário, e uma lista de cards contendo todos os projetos do mesmo. Ainda, é possível abrir o repositório desejado em uma nova aba, ou então o remover da lista em questão. E além disso, caso o usuário possua mais de 30 repositórios, o carregamento dos seguintes são feitos dinamicamente ao chegar na base da pagina num esquema de requisição dinâmica!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Próximos passos
+A próxima coisa que pretendo fazer é adicionar ferramentas de exibição personalizada, com sistema de busca por termos, filtros personalizados e ordenação de exibição. Contudo, não é uma tarefa tão trivial pois vai depender de ler bem a documentação da API para usar as queries corretas, e talvez já seja necessário criar um Token de usuário para executar as requisições a mais que deverão ser feitas com esses sistemas avançados.
 
-## Available Scripts
+## Links
+Código Fonte: [https://github.com/Palhanor/GikiHub](https://github.com/Palhanor/GikiHub)
 
-In the project directory, you can run:
+Projeto funcional: [https://palhanor.github.io/GikiHub/](https://palhanor.github.io/GikiHub/)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Screenshot do gikhub no perfil de Linus Torvalds](./public/assets/screenshot.png)
